@@ -17,6 +17,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # application gems
 gem 'mongoid', '~> 7.0', '>= 7.0.2'
 gem 'devise'
+gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

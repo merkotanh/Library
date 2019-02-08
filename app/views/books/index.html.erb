@@ -22,6 +22,9 @@
         <td><%= book.author %></td>
         <td><%= book.description %></td>
         <td><%= book.image %></td>
+        <% if book.image_url(:small) != nil %>
+          <td><%= image_tag book.image_url(:small) %></td> 
+        <% end %>
         <td><%= book.status %></td>
         <td><%= book.votes %></td>
         <td><%= link_to 'Show', book %></td>
