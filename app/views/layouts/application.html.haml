@@ -1,0 +1,56 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %title Library
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    #second-nav.nav.navbar.navbar-expand.navbar-light.bg-light
+      %ul.nav.navbar-nav.ml-auto.justify-content-end
+        - if user_signed_in?
+          %li.nav-item
+            = link_to "#{current_user.email}'s profile", current_user, class: 'nav-link'
+
+          %li.nav-item
+            = link_to 'signout', destroy_user_session_path, method: :delete, class: 'nav-link'
+        - else
+          %li.nav-item
+            = link_to 'signin', new_user_session_path, class: 'nav-link'
+          %li.nav-item
+            = link_to 'register', new_user_registration_path, class: 'nav-link'
+        
+        - if user_signed_in?
+          %li.nav-item
+            %a.nav-link{"data-placement" => "right", "data-toggle" => "tooltip", href: root_path, title: 'email_me'}
+              &nbsp;
+              %i.fa.fa-envelope-open
+    %nav.navbar.navbar-expand.navbar-dark.bg-dark
+      %a.navbar-brand{href: "/"} Library
+      %button.navbar-toggler{"aria-controls" => "navbarsExample04", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarsExample04", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarsExample04.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          %li.nav-item
+            %a.nav-link{href: books_path} Books
+          %li.nav-item
+            %a.nav-link.disabled{href: new_book_path} New book
+          %li.nav-item.dropdown
+            %a#dropdown04.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "http://example.com"} Dropdown
+            .dropdown-menu{"aria-labelledby" => "dropdown04"}
+              %a.dropdown-item{:href => "#"} Action
+              %a.dropdown-item{:href => "#"} Another action
+              %a.dropdown-item{:href => "#"} Something else here
+        %form.form-inline.my-2.my-md-0
+          %input.form-control{:placeholder => "Search", :type => "text"}/
+
+
+
+    .container
+      - flash.each do |key, value|
+        %div{ class: "#{flash_class(key)}"}
+          = value
+      = yield

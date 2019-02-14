@@ -1,0 +1,34 @@
+%p#notice= notice
+.row
+  .col-12
+    = @book.title
+    %br
+    = @book.author
+.row
+  .col-4
+    %strong Votes:
+    = @book.votes
+  .col-4
+    %strong Status:
+    = @book.status
+  .col-4
+    = form_for @book, :remote => true, :html => { 'data-type' => :html } do |f|
+      #add-button.add-button
+        = f.submit
+    = button_to 'root', root_path, class:'btn btn-light'
+.row
+  .col-6
+    = image_tag @book.image_url(:small)
+  .col-6
+    %strong Description:
+    = @book.description
+%p
+= link_to 'Edit', edit_book_path(@book)
+= link_to 'Back', books_path
+#comments-section
+  = render @book.comments
+
+= form_for [ @book, @book.comments.build ], remote: true  do |form|
+  = form.text_area :content, class: "form-control"
+  %br/
+  = form.submit class: "btn btn-light"

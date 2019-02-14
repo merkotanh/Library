@@ -12,4 +12,16 @@
  *
  *= require_tree .
  *= require_self
+
  */
+@import "bootstrap";
+
+#second-nav li a {
+  padding: 0 15px;
+}
+#second-nav ul li {
+    display: inline;
+    list-style: none;
+    float: left;
+}
+

@@ -1,0 +1,6 @@
+.comment{:id => "comment_#{comment.id}"}
+  %p
+    / # = image_tag(comment.user.image_url, size: "30", alt: comment.user.name)
+    %small
+      = link_to comment.user.email, user_path(comment.user.id)
+    = comment.content
