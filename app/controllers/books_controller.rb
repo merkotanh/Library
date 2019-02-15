@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :takebook]
+  respond_to :html, :js
+  
   def index
     @books = Book.all
   end
@@ -50,6 +51,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def takebook
+    take_book!(@book)
+    @book.histories.create(user: current_user)
+    respond_to do |format|
+      format.html { redirect_to book_path(@book), notice: "you take book" }
+      format.js {}
+    end
+  end
+
   private
     def set_book
       @book = Book.find(params[:id])
@@ -58,4 +68,5 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :author, :description, :image, :status, :votes)
     end
+
 end

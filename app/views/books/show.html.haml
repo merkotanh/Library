@@ -12,7 +12,7 @@
     %strong Status:
     = @book.status
   .col-4
-    = form_for @book, :remote => true, :html => { 'data-type' => :html } do |f|
+    = form_for @book, remote: true, html: { 'data-type' => :html } do |f|
       #add-button.add-button
         = f.submit
     = button_to 'root', root_path, class:'btn btn-light'
@@ -23,6 +23,8 @@
     %strong Description:
     = @book.description
 %p
+- if !@book.status
+  = link_to 'Take', take_book_path(@book), class: "like-btn", remote: true
 = link_to 'Edit', edit_book_path(@book)
 = link_to 'Back', books_path
 #comments-section

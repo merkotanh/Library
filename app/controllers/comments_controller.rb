@@ -30,9 +30,16 @@ class CommentsController < ApplicationController
   def destroy
     @book = Book.find(params[:book_id])
     @comment = @book.comments.find(params[:id])
-    record_activity("Destroys a comment #{@comment.content}")
     @comment.destroy
-    redirect_to image_path(@book)
+    if permitted_to_delete_comment?(@comment) && @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to book_path(@book), notice: "Commented successfully deleted" }
+        format.js {}
+      end
+    else
+      flash[:alert] = "Can't delete someone else's comment!"
+      redirect_to :back
+    end
   end
 
   private

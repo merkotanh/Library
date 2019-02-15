@@ -12,4 +12,5 @@ class Book
   has_many :comments, dependent: :destroy
   has_many :histories
   has_many :ratings, dependent: :destroy
+
 end

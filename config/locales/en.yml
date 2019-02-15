@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  comments:
+    create:
+      flash:
+        success: 'Comment Created'
+        error: 'Error Creating comment'
