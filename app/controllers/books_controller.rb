@@ -1,13 +1,18 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :takebook]
-  respond_to :html, :js
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :takebook, :toggle_enable_status]
+  respond_to :js, :json, :html
   
   def index
     @books = Book.all
   end
 
   def show
+    if (@book.status)
+      @link_status = 'return'
+    else
+      @link_status = 'take'
+    end
   end
 
   def new
@@ -51,13 +56,12 @@ class BooksController < ApplicationController
     end
   end
 
-  def takebook
-    take_book!(@book)
-    @book.histories.create(user: current_user)
-    respond_to do |format|
-      format.html { redirect_to book_path(@book), notice: "you take book" }
-      format.js {}
-    end
+  def toggle_enable_status
+    if @book.status
+      return_book!(@book)
+     else
+      take_book!(@book)
+     end
   end
 
   private

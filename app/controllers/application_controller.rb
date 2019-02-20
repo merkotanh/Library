@@ -13,4 +13,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :take_book!
 
+  def return_book!(book)
+    book.status = false
+    book.save
+    h = History.where(book_id:book.id).last # History.where(book_id:book.id).last.returned = Time.now <- так не срабатывает почему-то
+    h.returned = Time.now
+    h.save
+  end
+  helper_method :return_book!
 end

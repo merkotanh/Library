@@ -1,0 +1,5 @@
+<% if @book.status == false %>
+    $("#bookid").html('Take').removeClass('btn-warning').addClass('btn-success')
+<% else %>
+    $("#bookid").html('Return').removeClass('btn-success').addClass('btn-warning')
+<% end %>

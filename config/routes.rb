@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   
+  get 'histories/index'
+  get 'histories/show'
+  get 'history/index'
+  get 'history/show'
   devise_for :users
+
+  resources :histories
 
   resources :books do
     resources :comments   
@@ -10,12 +16,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :books do
+resources :books do
     member do
-      put 'take', to: "books#takebook"
-      get 'take', to: "books#takebook"
+        put :toggle_enable_status
     end
-  end
+end
   
   root 'books#index'
 end

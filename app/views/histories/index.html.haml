@@ -1,0 +1,29 @@
+.row
+  - if @history.exists?
+    .col-3
+      = 'id'
+    .col-3
+      = 'taken'
+    .col-1
+      = 'returned'
+    .col-1
+      = 'status'
+    .col-2
+      = 'email'
+    .col-2
+      = 'book_id'
+.row
+  - if @history.exists?
+    - @history.each do |history|
+      .col-3
+        = history.id
+      .col-3
+        = history.taken
+      .col-1
+        = history.returned
+      .col-1
+        = history.book.status
+      .col-2
+        = history.user.email
+      .col-2
+        = history.book.id
