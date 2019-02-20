@@ -1,0 +1,10 @@
+.row
+  .col-3
+    = link_to history.user.email, user_path(history.user.id)
+  .col-3
+    = history.taken
+  .col-3
+    = history.returned
+  .col-3
+    = history.book.status
+  %br/

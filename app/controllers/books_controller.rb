@@ -62,6 +62,7 @@ class BooksController < ApplicationController
      else
       take_book!(@book)
      end
+    @history = @book.histories.last
   end
 
   private

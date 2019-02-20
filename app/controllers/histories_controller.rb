@@ -5,6 +5,7 @@ class HistoriesController < ApplicationController
   end
 
   def show
+    @history = History.last
   end
 
   private
