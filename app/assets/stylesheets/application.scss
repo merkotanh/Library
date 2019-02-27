@@ -12,8 +12,8 @@
  *
  *= require_tree .
  *= require_self
-
  */
+
 @import "bootstrap";
 
 #second-nav li a {
@@ -25,3 +25,8 @@
     float: left;
 }
 
+body{
+  a:hover {
+    text-decoration: none;
+  }
+}

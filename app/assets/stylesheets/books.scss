@@ -1,3 +1,62 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.rating {
+ float:left;
+}
+
+.rating {
+  cursor: pointer;
+}
+
+/* replaces text button with star image  */
+.rating:not(:checked) > input { 
+  position:absolute;
+  top:-9999px;
+  clip:rect(0,0,0,0);
+}
+
+ /* buttons to Numbers */
+.rating:not(:checked) > label {
+  float:right; width:1em; padding:0 .1em; 
+  overflow:hidden; 
+  white-space:nowrap; 
+  cursor:pointer; 
+  font-size:200%; 
+  line-height:1.2; 
+  color:#ddd;
+}
+
+.rating .selected:before {
+  content: '\f005';
+}
+
+/* Replaces numbers with stars */    
+
+.rating:not(:checked) > label:before {
+  content: '★ '; 
+}
+
+.rating > input:checked ~ label {
+  color: #f70; 
+}
+
+/* when on star buttons */
+.rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
+  color: gold; 
+}
+
+.rating > input:checked + label:hover, .rating > input:checked + label:hover ~ label, .rating > input:checked ~ label:hover, .rating > input:checked ~ label:hover ~ label, .rating > label:hover ~ input:checked ~ label {
+  color: #ea0;
+}
+ 
+/* The input is radio button on click to buttton will move cursor to different position will remain stay on the same position */
+.rating:not(:checked) > input { 
+  display: none; 
+}
+
+#takebook-section {
+   float:right;
+}

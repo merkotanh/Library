@@ -1,6 +1,7 @@
 <% if @book.status == false %>
     $("#bookid").html('Take').removeClass('btn-warning').addClass('btn-success');
-    location.reload();
+    $("#history-section").load(location.href+" #history-section","");
+
 <% else %>
     $("#bookid").html('Return').removeClass('btn-success').addClass('btn-warning');
     addHistoryToBook("<%= j render 'histories/show', history: @history %>");

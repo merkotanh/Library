@@ -1,0 +1,21 @@
+.row
+  - if @ratings.exists?
+    .col-3
+      = 'id'
+    .col-1
+      = 'rate'
+    .col-3
+      = 'email'
+    .col-3
+      = 'title'
+.row
+  - if @ratings.exists?
+    - @ratings.each do |rating|
+      .col-3
+        = rating.id
+      .col-1
+        = rating.rate
+      .col-3
+        = rating.user.email
+      .col-3
+        = rating.book.title

@@ -8,6 +8,8 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{"data-require" => "fontawesome@*", "data-semver" => "4.5.0", :href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css", :rel => "stylesheet"}/
+
   %body
     #second-nav.nav.navbar.navbar-expand.navbar-light.bg-light
       %ul.nav.navbar-nav.ml-auto.justify-content-end
@@ -40,6 +42,8 @@
             %a.nav-link{href: new_book_path} New book
           %li.nav-item
             %a.nav-link{href: histories_path} History
+          %li.nav-item
+            %a.nav-link{href: ratings_path} Rating
           %li.nav-item.dropdown
             %a#dropdown04.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "http://example.com"} Dropdown
             .dropdown-menu{"aria-labelledby" => "dropdown04"}

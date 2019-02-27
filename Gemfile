@@ -24,7 +24,6 @@ gem 'mini_magick'
 gem 'bootstrap', '~> 4.1.3'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'jquery-rails'
-
 gem 'haml'
 
 group :development, :test do

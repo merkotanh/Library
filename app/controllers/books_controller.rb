@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :takebook, :toggle_enable_status]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :takebook, :toggle_enable_status, :vote]
   respond_to :js, :json, :html
   
   def index
@@ -8,11 +8,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    if (@book.status)
-      @link_status = 'return'
-    else
-      @link_status = 'take'
-    end
   end
 
   def new
@@ -62,7 +57,11 @@ class BooksController < ApplicationController
      else
       take_book!(@book)
      end
-    @history = @book.histories.last
+    @history = @book.histories.last#@book.histories.where(user_id: '5c5ad8272b10301f8a757ee5')
+  end
+
+  def vote
+    @book.ratings.create(user_id: current_user.id, book_id: @book.id)
   end
 
   private

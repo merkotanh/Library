@@ -1,5 +1,4 @@
 class HistoriesController < ApplicationController
-  # before_action :find_history, only: [:show]
   def index
   	@history = History.all
   end
