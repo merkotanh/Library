@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_book
+  before_action :find_book, only: [:create]
   respond_to :js, :json, :html
 
   def new
@@ -11,8 +11,13 @@ class RatingsController < ApplicationController
   end
 
   def create
-    @rating = @book.ratings.build(rating_params)
-    @book.count_book_rating(@book, @rating.rate)
+    if @book.voted_by(user_id: params[:user_id])
+      flash[:error] = "params = #{params[:user_id]}"
+      @rating = @book.ratings.build(rating_params)
+      @book.count_book_rating(@book, @rating.rate)
+    else
+      flash[:error] = "U v voted already"
+    end
     respond_to do |format|
       if @rating.save
         format.html { redirect_back(fallback_location: root_path) }

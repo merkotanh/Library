@@ -23,8 +23,5 @@ class User
   has_many :comments, dependent: :destroy
   has_many :histories
   has_many :ratings
-  
-  def voted?(book_id)
-    ratings.find_by(book_id: book_id).present?
-  end
+
 end

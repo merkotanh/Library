@@ -1,31 +1,35 @@
-%p#notice= notice
 .row
   .col-12
-    = @book.title
-    %br
-    = @book.author
+    #book-title-section
+      = @book.title
+    #book-author-section
+      = @book.author
 .row
   .col-6
     = render "ratings/setrating"
   .col-6
     #takebook-section
-    = link_to "#{ @book.status ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book), class: "bookid", id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{ @book.status ? 'warning' : 'success'}"
+      = link_to "#{ @book.status ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book), class: "bookid", id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{ @book.status ? 'warning' : 'success'}"
 .row
-  .col-4
-    = image_tag @book.image_url(:small)
-  .col-8
-    %strong Description:
-    = @book.description
+  .col-5
+    #book-img-section
+      = image_tag @book.image_url(:small), class: "book-img-section"
+  .col-7
+    #module.container
+      .excerpt 
+        = @book.description[0..140]
+      #collapseSection.collapse{"aria-expanded" => "false"}
+        = @book.description[141..@book.description.size]
+      %a.collapsed{"aria-controls" => "collapseSection", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseSection", :role => "button"}
+
 
 = link_to 'Edit', edit_book_path(@book)
 = link_to 'Back', books_path
 #comments-section
   = render @book.comments
-
-= form_for [ @book, @book.comments.build ], remote: true  do |form|
-  = form.text_area :content, class: "form-control"
-  %br/
-  = form.submit class: "btn btn-light"
+  = form_for [ @book, @book.comments.build ], remote: true  do |form|
+    = form.text_area :content, class: "form-control"
+    = form.submit class: "btn btn-light"
 
 #history-section
   = render @book.histories

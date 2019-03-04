@@ -1,50 +1,3 @@
-body {
-  background-color: #fff;
-  color: #333;
-  margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
-}
-
-a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
-
-th {
-  padding-bottom: 5px;
-}
-
-td {
-  padding: 0 5px 7px;
-}
-
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
-}
 
 #notice {
   color: green;
@@ -81,4 +34,21 @@ div {
 
 label {
   display: block;
+}
+
+.btn {
+  display: inline;
+  float: right;
+  padding: 0px 2px;
+  background: transparent !important;
+  z-index: 222;
+  display: inline-block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 48px;
+  border: 1px solid #7109aa;
+  border-radius: 0px;
+  letter-spacing: 2px;
+  position: relative;
 }

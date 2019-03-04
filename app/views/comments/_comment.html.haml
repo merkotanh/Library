@@ -1,10 +1,8 @@
 .comment{ id: "comment_#{comment.id}"}
-  %p
-    / # = image_tag(comment.user.image_url, size: "30", alt: comment.user.name)
-    %small
-      = link_to comment.user.email, user_path(comment.user.id)
+  / # = image_tag(comment.user.image_url, size: "30", alt: comment.user.name)
+  .commenter
+    = link_to comment.user.email, user_path(comment.user.id)
+  .comment-content
     = comment.content
-
-  - if permitted_to_delete_comment?(comment)
-    = button_to 'Delete', book_comment_path(comment.book.id, comment.id), { class: "btn btn-danger btn-xs",  method: :delete }
-  %br/
+- if permitted_to_delete_comment?(comment)
+  = link_to 'Delete', book_comment_path(comment.book.id, comment.id), { class: "btn-comments-delete",  method: :delete }

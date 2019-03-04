@@ -1,20 +1,24 @@
-- if user_signed_in? && !voted
+- if user_signed_in? 
+  /&& @book.voted_by(user_id: current_user.id)
   = form_for [ @book, @book.ratings.build(user_id: current_user.id) ], url: book_ratings_path(book_id: @book.id), remote: true do |f|
     #rating-section
       %fieldset.rating
         - (0..4).each do |i|
           - if i == (5 - @book.rank.to_i)
-            = f.radio_button :rate, (5-i), id: "star#{(5-i)}", checked: true, onclick: "setRating(#{(5-i)})"
-            %label{for: "star#{(5-i)}"}
+            - if @book.voted_by(user_id: current_user.id)
+              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", checked: true, onclick: "setRating(#{(5-i)})"
+              %label{for: "star#{(5-i)}"}
+            - else
+              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", checked: true, onclick: "showRating(#{(5-i)})"
+              %label{for: "star#{(5-i)}"}
+              
           - else
-            = f.radio_button :rate, (5-i), id: "star#{(5-i)}", onclick: "setRating(#{(5-i)})"
-            %label{for: "star#{(5-i)}"}
+            - if @book.voted_by(user_id: current_user.id)
+              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", onclick: "setRating(#{(5-i)})"
+              %label{for: "star#{(5-i)}"}
+            - else
+              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", onclick: "showRating(#{(5-i)})"
+              %label{for: "star#{(5-i)}"}
 
         = f.submit style: 'display: none;', id: 'ratingFormSubmit'
         = f.hidden_field :user_id, value: current_user.id
-
-:javascript
-  function setRating(rating) {
-    $('#ratingFormSubmit').click();
-    $( "#rating-section" ).load(window.location.href + " #rating-section" );
-  }
