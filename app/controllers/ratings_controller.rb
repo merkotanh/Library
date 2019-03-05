@@ -15,15 +15,6 @@ class RatingsController < ApplicationController
       flash[:error] = "params = #{current_user.id}"
       @rating = @book.ratings.build(rating_params)
       @rating.user_id = current_user.id
-      puts '1111111111111'
-      puts 
-      puts
-      puts @rating.rate
-      puts current_user.id
-      puts @rating.user_id
-      puts @rating.book_id
-      puts @rating.id
-      puts
     else
       flash[:error] = "U v voted already"
     end
