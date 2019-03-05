@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   respond_to :js, :json, :html
   
   def index
-    @books = Book.all #page(params[:page]).per(20)
+    @books = Book.page(params[:page]).per(2)
     @top_books = Book.order(taken_count: :desc, stars_count: :desc).limit(5)
   end
 
