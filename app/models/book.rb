@@ -19,12 +19,12 @@ class Book
     # self.votes += 1/rate
     # self.rank = self.stars_count/self.votes
     # self.save
-    self.rank = (self.ratings.map{ |r| 1/r.rate.to_f }.inject(0){|rating, r| rating + r}).to_s
+    self.rank = (self.stars_count/self.ratings.map{ |r| 1/r.rate.to_f }.inject(0){|rating, r| rating + r}).round.to_s
     self.save
   end
   
-  def voted_by(user)
-    self.ratings.find_by(user: user)
+  def voted_by?(user_id)
+    self.ratings.where(user_id: user_id).exists?
   end
 
   def top_five

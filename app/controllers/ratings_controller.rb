@@ -11,8 +11,7 @@ class RatingsController < ApplicationController
   end
 
   def create
-    unless @book.voted_by(user: current_user)
-      flash[:error] = "params = #{current_user.id}"
+    unless @book.voted_by?(user: current_user)
       @rating = @book.ratings.build(rating_params)
       @rating.user_id = current_user.id
     else

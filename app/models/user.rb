@@ -24,8 +24,4 @@ class User
   has_many :histories
   has_many :ratings
 
-  def voted(book)
-     self.ratings.find_by(book: book)
-  end
-  
 end
