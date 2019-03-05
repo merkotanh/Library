@@ -11,15 +11,25 @@ class RatingsController < ApplicationController
   end
 
   def create
-    if @book.voted_by(user_id: params[:user_id])
-      flash[:error] = "params = #{params[:user_id]}"
+    unless @book.voted_by(user: current_user)
+      flash[:error] = "params = #{current_user.id}"
       @rating = @book.ratings.build(rating_params)
-      @book.count_book_rating(@book, @rating.rate)
+      @rating.user_id = current_user.id
+      puts '1111111111111'
+      puts 
+      puts
+      puts @rating.rate
+      puts current_user.id
+      puts @rating.user_id
+      puts @rating.book_id
+      puts @rating.id
+      puts
     else
       flash[:error] = "U v voted already"
     end
     respond_to do |format|
       if @rating.save
+        @book.count_book_rating(@rating.rate)
         format.html { redirect_back(fallback_location: root_path) }
         format.json { render json: @rating, status: :created }
         format.js {}
@@ -34,7 +44,7 @@ class RatingsController < ApplicationController
   private
 
     def rating_params
-      params.require(:rating).permit(:rate, :user_id, :book_id)
+      params.require(:rating).permit(:rate)
     end
 
     def find_book

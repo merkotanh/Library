@@ -22,7 +22,7 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
 
 gem 'bootstrap', '~> 4.1.3'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'haml'
 

@@ -5,20 +5,20 @@
       %fieldset.rating
         - (0..4).each do |i|
           - if i == (5 - @book.rank.to_i)
-            - if @book.voted_by(user_id: current_user.id)
-              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", checked: true, onclick: "setRating(#{(5-i)})"
-              %label{for: "star#{(5-i)}"}
-            - else
-              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", checked: true, onclick: "showRating(#{(5-i)})"
-              %label{for: "star#{(5-i)}"}
+
+            = f.radio_button :rate, (5-i), id: "star#{(5-i)}", checked: true, onclick: "setRating(#{(5-i)})"
+            %label{for: "star#{(5-i)}"}
+
+            / = f.radio_button :rate, (5-i), id: "star#{(5-i)}", checked: true, onclick: "showRating(#{(5-i)})"
+            / %label{for: "star#{(5-i)}"}
               
           - else
-            - if @book.voted_by(user_id: current_user.id)
-              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", onclick: "setRating(#{(5-i)})"
-              %label{for: "star#{(5-i)}"}
-            - else
-              = f.radio_button :rate, (5-i), id: "star#{(5-i)}", onclick: "showRating(#{(5-i)})"
-              %label{for: "star#{(5-i)}"}
+
+            = f.radio_button :rate, (5-i), id: "star#{(5-i)}", onclick: "setRating(#{(5-i)})"
+            %label{for: "star#{(5-i)}"}
+
+            / = f.radio_button :rate, (5-i), id: "star#{(5-i)}", onclick: "showRating(#{(5-i)})"
+            / %label{for: "star#{(5-i)}"}
 
         = f.submit style: 'display: none;', id: 'ratingFormSubmit'
-        = f.hidden_field :user_id, value: current_user.id
+        / = f.hidden_field :user_id, value: current_user.id
