@@ -15,21 +15,59 @@
     #book-img-section
       = image_tag @book.image_url(:small), class: "book-img-section"
   .col-7
-    #module.container
-      .excerpt 
-        = @book.description[0..140]
-      #collapseSection.collapse{"aria-expanded" => "false"}
-        = @book.description[141..@book.description.size]
-      %a.collapsed{"aria-controls" => "collapseSection", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseSection", :role => "button"}
-
+    .special-text
+      = @book.description
+    .btn.expand-description
+      read more
 
 = link_to 'Edit', edit_book_path(@book)
 = link_to 'Back', books_path
+%h6
+  = "#{@book.comments.all.size} comments"
+  
 #comments-section
   = render @book.comments
   = form_for [ @book, @book.comments.build ], remote: true  do |form|
     = form.text_area :content, class: "form-control"
     = form.submit class: "btn btn-light"
+.btn.expand-comments
+  read more
 
 #history-section
   = render @book.histories
+.btn.expand-history
+  read more
+
+:javascript
+  $('.expand-description').on('click', function(){
+    $('.special-text').toggleClass('-expanded');
+    
+    if ($('.special-text').hasClass('-expanded')) {
+      $('.expand-description').html('hide content');
+    } else {
+      $('.expand-description').html('read more');
+    }
+  });
+
+
+:javascript
+  $('.expand-history').on('click', function(){
+    $('#history-section').toggleClass('-expanded');
+    
+    if ($('#history-section').hasClass('-expanded')) {
+      $('.expand-history').html('hide content');
+    } else {
+      $('.expand-history').html('read more');
+    }
+  });
+
+:javascript
+  $('.expand-comments').on('click', function(){
+    $('#comments-section').toggleClass('-expanded');
+    
+    if ($('#comments-section').hasClass('-expanded')) {
+      $('.expand-comments').html('hide content');
+    } else {
+      $('.expand-comments').html('read more');
+    }
+  });
