@@ -4,5 +4,5 @@ class Rating
   field :rate, type: Integer, default: 0
   
   belongs_to :user
-  belongs_to :book, counter_cache: :stars_count
+  belongs_to :book, counter_cache: :stars_count, dependent: :destroy
 end

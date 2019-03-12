@@ -184,6 +184,7 @@
 }
 
 #book-title-section {
+  font-family: "Times New Roman",Georgia,Serif;
   font-size: 18px;
   text-align: center;
   font-weight: 600;
@@ -192,6 +193,7 @@
 }
 
 #book-author-section {
+  font-family: "Times New Roman",Georgia,Serif !important;
   font-size: 16px;
   text-align: center;
   font-weight: 500;
@@ -219,7 +221,6 @@
   letter-spacing: 0 !important;
 }
 
-// Okay legit CSS now
 .special-text, #history-section, #comments-section {
   position: relative;
   max-height: 100px;
@@ -230,7 +231,6 @@
   }
 }
 
-
 #comments-section:not(.-expanded)::after, #history-section:not(.-expanded)::after, .special-text:not(.-expanded)::after {
   content: '';
   position: absolute;
@@ -240,7 +240,6 @@
   right: 0;
   background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
 }
-
 
 @media screen and (max-width: 600px) {
   #history-section{
@@ -253,6 +252,14 @@
   text-align: center;
   display: block;
   margin: 0 auto;
+}
+
+.index-img-section {
+    width:80px;
+    height: auto;
+    clear: both;
+    float: left;
+    border: 1px solid #eee;
 }
 
 @media screen and (max-width: 3000px) {

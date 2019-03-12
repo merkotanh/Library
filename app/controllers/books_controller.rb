@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   respond_to :js, :json, :html
   
   def index
-    @books = Book.page(params[:page]).per(2)
+    @books = Book.page(params[:page]).per(5)
     @top_books = Book.order(taken_count: :desc, stars_count: :desc).limit(5)
   end
 
@@ -53,11 +53,11 @@ class BooksController < ApplicationController
   end
 
   def toggle_enable_status
-    if @book.status
+    if @book.status #&& taken_by?(current_user)
       return_book!(@book)
-     else
+    else
       take_book!(@book)
-     end
+    end
     @history = @book.histories.last#@book.histories.where(user_id: '5c5ad8272b10301f8a757ee5')
   end
 

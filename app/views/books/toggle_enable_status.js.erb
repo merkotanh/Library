@@ -1,6 +1,7 @@
 <% if @book.status == false %>
-    $("#bookid").html('Take').removeClass('btn-warning').addClass('btn-success');
+    $("#bookid").html('Avaliable').removeClass('btn-warning').addClass('btn-success');
 <% else %>
-    $("#bookid").html('Return').removeClass('btn-success').addClass('btn-warning');
+    $("#bookid").html('Not avaliable').removeClass('btn-success').addClass('btn-warning');
 <% end %>
-$("#history-section").load(location.href+" #history-section","");
+    $("#history-section").load(location.href+" #history-section","");
+

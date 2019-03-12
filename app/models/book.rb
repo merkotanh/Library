@@ -27,7 +27,11 @@ class Book
     self.ratings.where(user_id: user_id).exists?
   end
 
-  def top_five
-    # puts self.stars_count+self.taken_count
+  def taken?(user_id)
+    self.histories.where(user_id: user_id).and.where(returned: nil).exists?
+  end
+
+  def taken_by?(user_id)
+    self.status ? self.histories.where(user_id: user_id).and.where(returned: nil).exists? ? -1 : 0 : 1
   end
 end

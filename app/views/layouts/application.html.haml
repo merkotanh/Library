@@ -3,6 +3,8 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+
+
     %title Library
     = csrf_meta_tags
     = csp_meta_tag
@@ -46,6 +48,7 @@
 
         %form.form-inline
           %input.form-control{:placeholder => "Search", :type => "text"}/
+
 
     .container
       - flash.each do |key, value|

@@ -1,3 +1,6 @@
+h1 {
+
+}
 
 #notice {
   color: green;
@@ -51,4 +54,149 @@ label {
   border-radius: 0px;
   letter-spacing: 2px;
   position: relative;
+}
+
+table {
+  font-family: 'Arial';
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  border-bottom: 2px solid #505050;
+
+  tr {
+     &:hover {
+      background: #f4f4f4;
+      td {
+        color: #555;
+      }
+    }
+  }
+
+  th, td {
+    color: #999;
+    border: 1px solid #eee;
+    border-collapse: collapse;
+  }  
+
+  th {
+    position: sticky;
+    background: #909090;
+    color: #fff;
+    &.last {
+      border-right: none;
+    }
+  }
+}
+
+@media screen and (max-width: 3200px) {
+  table {
+    width: 100%;
+    margin: 25px auto;
+  }
+  th, td {
+    padding: 12px 35px;
+    text-transform: capitalize;
+  }
+  th {
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  table {
+    width: 100%;
+    margin: auto;
+  }
+  th, td {
+    padding: 5px 10px 5px 10px;
+    clear: both;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+}
+
+@media screen and (min-width: 676px) {
+  .slider {
+    width: 100%;
+    height: 320px;
+    display: flex;
+    overflow-x: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .slide {
+    width: 20%;
+    height: auto;
+    flex-shrink: 0;
+    transition: all .7s ease-in-out;
+    img{
+      width: 95%;
+      height: auto;
+    }
+      .index-book-desc {
+        width: 19%;
+        opacity: 0;
+        position: absolute;
+        text-align: left;
+    }
+
+      .index-b-description {
+        background-color: transparent;
+        color: black;
+        border: 1px solid #eee;
+        font-size: 11px;
+      }
+  }
+
+  .slide:hover .index-img-section {
+    opacity: 0.3;
+  }
+  .slide:hover .index-book-desc {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  h1 {
+    margin-top: 5px !important; 
+    font-size: 20px !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+   }
+  h4 {
+    font-size: 16px !important;
+  }
+
+  .slider {
+    width: 300px;
+    height: 380px;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-scroll-snap-points-x: repeat(300px);
+        -ms-scroll-snap-points-x: repeat(300px);
+            scroll-snap-points-x: repeat(300px);
+    -webkit-scroll-snap-type: mandatory;
+        -ms-scroll-snap-type: mandatory;
+            scroll-snap-type: mandatory;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .slide {
+    width: 300px;
+    height: auto;
+    flex-shrink: 0;
+    height: auto;
+    transition: all .7s ease-in-out;
+    img{
+      width: 250px;
+      height: auto;
+    }
+    .index-book-desc {
+      display: none;
+    }
+  }
 }

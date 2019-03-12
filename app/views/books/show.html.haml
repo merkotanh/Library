@@ -9,7 +9,7 @@
     = render "ratings/setrating"
   .col-6
     #takebook-section
-      = link_to "#{ @book.status ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book),  id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{ @book.status ? 'warning' : 'success'}"
+      = link_to "#{ @book.status ? 'Not avaliable' : 'Avaliable' }", toggle_enable_status_book_path(@book),  id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{ @book.status ? 'warning' : 'success'}"
 .row
   .col-5
     #book-img-section
@@ -21,7 +21,9 @@
       read more
 
 = link_to 'Edit', edit_book_path(@book)
+= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'Back', books_path
+
 %h6
   = "#{@book.comments.all.size} comments"
   
@@ -35,7 +37,7 @@
 
 #history-section
   = render @book.histories
-.btn.expand-history
+.btn.expand-history 
   read more
 
 :javascript
@@ -49,8 +51,6 @@
     }
   });
 
-
-:javascript
   $('.expand-history').on('click', function(){
     $('#history-section').toggleClass('-expanded');
     
@@ -61,7 +61,6 @@
     }
   });
 
-:javascript
   $('.expand-comments').on('click', function(){
     $('#comments-section').toggleClass('-expanded');
     
