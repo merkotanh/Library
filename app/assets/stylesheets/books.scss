@@ -238,7 +238,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
 }
 
 @media screen and (max-width: 600px) {
@@ -298,4 +297,16 @@
     width: 100px;
     height: auto;
   }
+}
+
+.book-n-aval {
+  color: #C70039;
+  border: 1px solid #C70039;
+  border-radius: 3px;
+  z-index: 222;
+  display: inline-block;
+  text-align: center;
+  font-weight: 500;
+  line-height: 30px;
+  padding: 4px, 2px, 2px, 2px;
 }

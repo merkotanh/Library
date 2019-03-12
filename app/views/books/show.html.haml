@@ -9,7 +9,16 @@
     = render "ratings/setrating"
   .col-6
     #takebook-section
-      = link_to "#{ @book.status ? 'Not avaliable' : 'Avaliable' }", toggle_enable_status_book_path(@book),  id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{ @book.status ? 'warning' : 'success'}"
+      - if @book.taken_by?(current_user.id) == 0
+        / book is busy
+        .book-n-aval
+          Book is not avaliable
+        %br
+        = "Taken by"
+        = link_to " #{@book.taken_by.email}", user_path(@book.taken_by.id)
+      - else
+        / book's free
+        = link_to "#{@book.taken_by?(current_user.id) == -1 ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book),  id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{@book.taken_by?(current_user.id) == -1 ? 'warning' : 'success'}"
 .row
   .col-5
     #book-img-section
@@ -29,16 +38,19 @@
   
 #comments-section
   = render @book.comments
-  = form_for [ @book, @book.comments.build ], remote: true  do |form|
-    = form.text_area :content, class: "form-control"
-    = form.submit class: "btn btn-light"
-.btn.expand-comments
-  read more
+- if @book.comments.all.size > 2
+  .btn.expand-comments
+    read more
+%br
+= form_for [ @book, @book.comments.build ], remote: true  do |form|
+  = form.text_area :content, class: "form-control"
+  = form.submit class: "btn btn-light"
 
 #history-section
   = render @book.histories
-.btn.expand-history 
-  read more
+- if @book.histories.all.size > 6
+  .btn.expand-history 
+    read more
 
 :javascript
   $('.expand-description').on('click', function(){

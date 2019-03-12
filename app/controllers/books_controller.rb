@@ -53,7 +53,7 @@ class BooksController < ApplicationController
   end
 
   def toggle_enable_status
-    if @book.status #&& taken_by?(current_user)
+    if @book.taken?(current_user)
       return_book!(@book)
     else
       take_book!(@book)

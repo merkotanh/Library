@@ -11,11 +11,11 @@ class RatingsController < ApplicationController
   end
 
   def create
-    unless @book.voted_by?(user: current_user)
+    if @book.voted_by?(user: current_user)
+      flash[:error] = "U v voted already"
+    else
       @rating = @book.ratings.build(rating_params)
       @rating.user_id = current_user.id
-    else
-      flash[:error] = "U v voted already"
     end
     respond_to do |format|
       if @rating.save
