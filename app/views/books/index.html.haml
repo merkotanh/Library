@@ -3,7 +3,6 @@
   .col
     %h1 Books
     %h4 Top rated books
-    %hr
 
 .row
   .col
@@ -19,7 +18,27 @@
 
 .row
   .col
-    = link_to 'New Book', new_book_path
+    = form_tag books_path, method: 'get' do
+      = text_field_tag :search, params[:search], class:'form-control'
+      = submit_tag 'Search', title: nil, class:'btn btn-light'
+      = link_to 'Cancel', books_path, class:'btn btn-light'
+
+    - if @search_books != nil
+      %table
+        - @search_books.each do |book|
+          %tr
+            %td
+              = link_to book_path(book) do
+                = image_tag book.image_url(:small), class: "index-img-section"
+            %td= link_to book.title, book
+            %td= book.author
+
+
+
+- if user_signed_in? && current_user.admin?
+  .row
+    .col
+      = link_to 'New Book', new_book_path
 
 .row
   .col
@@ -36,9 +55,11 @@
         %tbody
           - @books.each do |book|
             %tr
-              %td= image_tag book.image_url(:small), class: "index-img-section"
+              %td
+                = link_to book_path(book) do
+                  = image_tag book.image_url(:small), class: "index-img-section"
               %td= link_to book.title, book
               %td= book.author
               %td= book.status ? image_tag('no50x50em.png') : image_tag('yes50x50em.png')
               
-        = paginate @books
+              / = paginate @books

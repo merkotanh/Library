@@ -40,4 +40,8 @@ class Book
   def taken_by?(user_id)
     self.status ? self.histories.where(user_id: user_id).and.where(returned: nil).exists? ? -1 : 0 : 1
   end
+
+  def self.search(search)
+    where({title: search})
+  end
 end

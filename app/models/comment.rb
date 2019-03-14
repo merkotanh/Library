@@ -2,6 +2,7 @@ class Comment
   include Mongoid::Document
   field :content
   validates :content, presence: true
+  
   belongs_to :user
-  belongs_to :book, dependent: :destroy
+  belongs_to :book
 end

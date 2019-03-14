@@ -12,10 +12,9 @@
       - if @book.taken_by?(current_user.id) == 0
         / book is busy
         .book-n-aval
-          Book is not avaliable
-        %br
-        = "Taken by"
-        = link_to " #{@book.taken_by.email}", user_path(@book.taken_by.id)
+          Book is being read
+        %small
+          = link_to "by #{@book.taken_by.email}", user_path(@book.taken_by.id)
       - else
         / book's free
         = link_to "#{@book.taken_by?(current_user.id) == -1 ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book),  id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{@book.taken_by?(current_user.id) == -1 ? 'warning' : 'success'}"
@@ -29,26 +28,27 @@
     .btn.expand-description
       read more
 
-= link_to 'Edit', edit_book_path(@book)
-= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }
+- if current_user.admin
+  = link_to 'Edit', edit_book_path(@book)
+  = link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'Back', books_path
 
-%h6
+#comments-count
   = "#{@book.comments.all.size} comments"
-  
+
 #comments-section
   = render @book.comments
 - if @book.comments.all.size > 2
   .btn.expand-comments
     read more
-%br
+
 = form_for [ @book, @book.comments.build ], remote: true  do |form|
   = form.text_area :content, class: "form-control"
   = form.submit class: "btn btn-light"
 
 #history-section
   = render @book.histories
-- if @book.histories.all.size > 6
+- if @book.histories.all.size > 4
   .btn.expand-history 
     read more
 

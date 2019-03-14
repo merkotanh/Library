@@ -1,0 +1,13 @@
+.row
+  .col.col-lg-4.offset-lg-4
+    .h1= "Edit profile"
+    = form_for @user, html: { multipart: true } do |f|
+      .form-group
+        = f.label :nickname
+        = f.text_field :nickname, class:'form-control'
+      
+      .form-group
+        = f.label :phone
+        = f.text_field(:phone, data: { mask: '(999) 999-9999' }, class:'form-control')
+      .actions
+        = f.submit 'Save', class:'btn btn-light'

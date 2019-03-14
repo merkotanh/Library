@@ -1,0 +1,49 @@
+.row
+  .col
+    %h1
+      = @user.nickname
+    %h2
+      = @user.email
+    - if current_user == @user
+      = link_to t('edit'), edit_user_path(@user)
+    %hr
+.row
+  .col
+    %h1= "Books're in use"
+    %table
+      %thead
+        %tr
+          %th Cover
+          %th Title
+          %th Author
+          %th Taken
+      %tbody
+        - @user.books_in_use.each do |history|
+          %tr
+            %td
+              = link_to book_path(history.book) do
+                = image_tag history.book.image_url(:small), class: "index-img-section"
+            %td= link_to history.book.title, book_path
+            %td= history.book.author
+            %td= history.taken
+.row
+  .col
+    %h1= "Books've been read"
+    %table
+      %thead
+        %tr
+          %th Cover
+          %th Title
+          %th Author
+          %th Taken
+          %th Returned
+      %tbody
+        - @user.books_been_read.each do |history|
+          %tr
+            %td
+              = link_to book_path(history.book) do
+                = image_tag history.book.image_url(:small), class: "index-img-section"
+            %td= link_to history.book.title, book_path
+            %td= history.book.author
+            %td= history.taken
+            %td= history.returned

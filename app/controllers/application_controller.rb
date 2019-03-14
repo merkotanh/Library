@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def permitted_to_delete_comment?(comment)
-    current_user == comment.user || current_user.admin
+    current_user == comment.user || current_user.admin?
   end
   helper_method :permitted_to_delete_comment?
 

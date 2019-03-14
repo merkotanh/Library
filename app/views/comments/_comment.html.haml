@@ -5,4 +5,4 @@
   .comment-content
     = comment.content
 - if permitted_to_delete_comment?(comment)
-  = link_to 'Delete', book_comment_path(comment.book.id, comment.id), { class: "btn-comments-delete",  method: :delete }
+  = link_to 'Delete', book_comment_path(comment.book.id, comment.id),  method: :delete, remote: true,  class: "btn-comments-delete"

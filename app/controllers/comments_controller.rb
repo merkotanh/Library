@@ -27,15 +27,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @book.comments.find(params[:id])
-    @comment.destroy
+    @comment = Comment.find(params[:id])
     if permitted_to_delete_comment?(@comment) && @comment.destroy
       respond_to do |format|
         format.html { redirect_to book_path(@book), notice: "Commented successfully deleted" }
         format.js {}
       end
-    else
-      redirect_to :back
     end
   end
 

@@ -4,5 +4,5 @@ class History
   field :returned,  type: Date
   
   belongs_to :user
-  belongs_to :book, counter_cache: :taken_count, dependent: :destroy
+  belongs_to :book, counter_cache: :taken_count
 end

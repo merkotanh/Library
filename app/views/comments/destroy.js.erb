@@ -1,3 +1,2 @@
-addCommentToBook("<%= j render @comment %>");
-$("form#new_comment textarea").val("");
+$('#comments-section').html('<%= escape_javascript(render partial:@book.comments) %>');
 $('#comments-count').html('This book has been commented with <%= escape_javascript(pluralize(@book.comments.count, 'comment')) %>');

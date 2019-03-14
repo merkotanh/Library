@@ -4,8 +4,12 @@ class BooksController < ApplicationController
   respond_to :js, :json, :html
   
   def index
-    @books = Book.page(params[:page]).per(5)
     @top_books = Book.order(taken_count: :desc, stars_count: :desc).limit(5)
+    if params[:search] && params[:search] != ''
+      # @search_books = Book.search(params[:search])
+      @search_books = Book.where(title: Regexp.new(params[:search]))
+    end
+    @books = Book.order(title: :asc).page(params[:page]).per(5)
   end
 
   def show

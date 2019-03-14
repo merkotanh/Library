@@ -161,7 +161,7 @@
 #comments-section {
   margin: 5px 0 0 0;
   position: relative;
-  max-height: 100px;
+  max-height: 200px;
   overflow: hidden;
   transition: max-height 1s ease;
   padding: 2px 0;
@@ -201,6 +201,10 @@
   letter-spacing: 2px;
 }
 
+#comments-count {
+  font-family: monospace;
+}
+
 #description-section {
   text-align: justify;
 }
@@ -223,7 +227,7 @@
 
 .special-text, #history-section, #comments-section {
   position: relative;
-  max-height: 100px;
+  max-height: 200px;
   overflow: hidden;
   transition: max-height 1s ease;
   &.-expanded {
@@ -232,7 +236,7 @@
 }
 
 #comments-section:not(.-expanded)::after, #history-section:not(.-expanded)::after, .special-text:not(.-expanded)::after {
-  content: '';
+
   position: absolute;
   top: 0;
   bottom: 0;
@@ -254,8 +258,8 @@
 }
 
 .index-img-section {
-    width:80px;
-    height: auto;
+    width: 80px;
+    height: 110px;
     clear: both;
     float: left;
     border: 1px solid #eee;
@@ -263,7 +267,7 @@
 
 @media screen and (max-width: 3000px) {
   .book-img-section {
-    width:360px;
+    width:320px;
     height: auto;
     clear: both;
     float: left;
@@ -272,7 +276,7 @@
 
 @media screen and (max-width: 1024px) {
   .book-img-section {
-    width:350px;
+    width:320px;
     height: auto;
     clear: both;
     float: left;
@@ -299,14 +303,27 @@
   }
 }
 
-.book-n-aval {
-  color: #C70039;
-  border: 1px solid #C70039;
-  border-radius: 3px;
-  z-index: 222;
-  display: inline-block;
-  text-align: center;
-  font-weight: 500;
-  line-height: 30px;
-  padding: 4px, 2px, 2px, 2px;
+@media screen and (min-width: 676px) {
+  .book-n-aval {
+    color: #C70039;
+    border: 1px solid #C70039;
+    border-radius: 3px;
+    z-index: 222;
+    text-align: center;
+    font-weight: 500;
+    line-height: 30px;
+    padding: 4px, 2px, 2px, 2px;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .book-n-aval {
+    color: #C70039;
+    border: 1px solid #C70039;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 12px;
+    padding: auto;
+  }
 }

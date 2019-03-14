@@ -19,9 +19,22 @@ class User
   field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   field :admin, type: Mongoid::Boolean, default: false
+  field :nickname
+  field :phone
 
   has_many :comments, dependent: :destroy
   has_many :histories
   has_many :ratings
 
+  def admin?
+    self.admin == true ? true : false
+  end
+
+  def books_in_use
+    self.histories.where(returned: nil)
+  end
+
+  def books_been_read
+    self.histories.where(:returned.exists => true)
+  end
 end
