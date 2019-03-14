@@ -12,6 +12,9 @@ class Book
   field :stars_count, type: Integer, default: 0
   field :taken_count, type: Integer, default: 0
 
+  index ({ title: 1 })
+  index ({ author: 1 })
+
   has_many :comments, dependent: :destroy
   has_many :histories
   has_many :ratings, dependent: :destroy
