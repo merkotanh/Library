@@ -25,22 +25,7 @@
 
     - if @search_books != nil
       %h1 Search results
-      %table
-        %thead
-          %tr
-            %th Cover
-            %th Title
-            %th Author
-            %th N/A
-        - @search_books.each do |book|
-          %tr
-            %td
-              = link_to book_path(book) do
-                = image_tag book.image_url(:small), class: "index-img-section"
-            %td= link_to book.title, book
-            %td= book.author
-            %td= book.status ? image_tag('no50x50em.png') : image_tag('yes50x50em.png')
-
+      = render partial: 'book_table', locals: { books: @search_books }
 
 - if user_signed_in? && current_user.admin?
   .row
@@ -51,22 +36,5 @@
   .col
     %h4 All books
     #all_books
-      %table
-        %thead
-          %tr
-            %th Cover
-            %th Title
-            %th Author
-            %th N/A
-
-        %tbody
-          - @books.each do |book|
-            %tr
-              %td
-                = link_to book_path(book) do
-                  = image_tag book.image_url(:small), class: "index-img-section"
-              %td= link_to book.title, book
-              %td= book.author
-              %td= book.status ? image_tag('no50x50em.png') : image_tag('yes50x50em.png')
-              
+      = render partial: 'book_table', locals: { books: @books }
       = paginate @books

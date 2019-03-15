@@ -17,6 +17,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @book.as_json
   end
 
   def edit
@@ -24,7 +25,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-
+    @book.as_json
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }

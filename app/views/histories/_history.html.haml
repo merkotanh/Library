@@ -1,8 +1,8 @@
 .row
-  .col-4
-    = link_to history.user.email, user_path(history.user.id)
+  .col-4.offset-1
+    = link_to history.user.nickname, user_path(history.user.id)
   .col-4
     = history.taken
-  .col-4
+  .col-3
     = history.returned
   %br/

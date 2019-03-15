@@ -16,7 +16,7 @@
         .book-n-aval
           Book is being read
         %small
-          = link_to "by #{@book.taken_by.email}", user_path(@book.taken_by.id)
+          = link_to "by #{@book.taken_by.nickname}", user_path(@book.taken_by.id)
       - else
         / book's free
         = link_to "#{@book.taken_by?(current_user.id) == -1 ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book),  id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{@book.taken_by?(current_user.id) == -1 ? 'warning' : 'success'}"
@@ -52,7 +52,10 @@
       = form.submit class: "btn btn-light"
 
     #history-section
-      = render @book.histories
+      - if @book.histories.all.size > 0
+        #book-author-section
+          This book was taken by
+        = render @book.histories
     - if @book.histories.all.size > 4
       .btn.expand-history 
         read more

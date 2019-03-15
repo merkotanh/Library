@@ -70,7 +70,7 @@ table {
   border-bottom: 2px solid #505050;
 
   tr {
-     &:hover {
+     &:hover, &:active {
       background: #f4f4f4;
       td {
         color: #555;
