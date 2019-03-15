@@ -31,57 +31,29 @@
     .btn.expand-description
       read more
 
-- if current_user.admin
-  = link_to 'Edit', edit_book_path(@book)
-  = link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }
-= link_to 'Back', books_path
+.row
+  .col
+    - if current_user.admin
+      = link_to 'Edit', edit_book_path(@book)
+      = link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to 'Back', books_path
 
-#comments-count
-  = "#{@book.comments.all.size} comments"
+    #comments-count
+      = "#{@book.comments.all.size} comments"
 
-#comments-section
-  = render @book.comments
-- if @book.comments.all.size > 2
-  .btn.expand-comments
-    read more
+    #comments-section
+      = render @book.comments
+    - if @book.comments.all.size > 2
+      .btn.expand-comments
+        read more
 
-= form_for [ @book, @book.comments.build ], remote: true  do |form|
-  = form.text_area :content, class: "form-control"
-  = form.submit class: "btn btn-light"
+    = form_for [ @book, @book.comments.build ], remote: true  do |form|
+      = form.text_area :content, class: "form-control"
+      = form.submit class: "btn btn-light"
 
-#history-section
-  = render @book.histories
-- if @book.histories.all.size > 4
-  .btn.expand-history 
-    read more
+    #history-section
+      = render @book.histories
+    - if @book.histories.all.size > 4
+      .btn.expand-history 
+        read more
 
-:javascript
-  $('.expand-description').on('click', function(){
-    $('.special-text').toggleClass('-expanded');
-    
-    if ($('.special-text').hasClass('-expanded')) {
-      $('.expand-description').html('hide content');
-    } else {
-      $('.expand-description').html('read more');
-    }
-  });
-
-  $('.expand-history').on('click', function(){
-    $('#history-section').toggleClass('-expanded');
-    
-    if ($('#history-section').hasClass('-expanded')) {
-      $('.expand-history').html('hide content');
-    } else {
-      $('.expand-history').html('read more');
-    }
-  });
-
-  $('.expand-comments').on('click', function(){
-    $('#comments-section').toggleClass('-expanded');
-    
-    if ($('#comments-section').hasClass('-expanded')) {
-      $('.expand-comments').html('hide content');
-    } else {
-      $('.expand-comments').html('read more');
-    }
-  });
