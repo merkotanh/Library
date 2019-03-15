@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @book, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @book }
         format.js {}
       else
         format.html { render 'books/show', notice: 'Comment was not created.' }
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if permitted_to_delete_comment?(@comment) && @comment.destroy
       respond_to do |format|
-        format.html { redirect_to book_path(@book), notice: "Commented successfully deleted" }
+        format.html { redirect_to book_path(@book) }
         format.js {}
       end
     end
