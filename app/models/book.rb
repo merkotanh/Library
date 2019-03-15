@@ -45,6 +45,6 @@ class Book
   end
 
   def self.search(search)
-    where({title: search})
+    # where({title: search})
   end
 end

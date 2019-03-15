@@ -18,3 +18,10 @@
 //= require turbolinks
 //= require popper
 //= require_tree .
+
+
+$(document).ready(function(){
+  setTimeout(function(){
+    $('.alert').remove();
+  }, 4000);
+ })

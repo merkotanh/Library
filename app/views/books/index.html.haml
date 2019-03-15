@@ -24,7 +24,14 @@
       = link_to 'Cancel', books_path, class:'btn btn-light'
 
     - if @search_books != nil
+      %h1 Search results
       %table
+        %thead
+          %tr
+            %th Cover
+            %th Title
+            %th Author
+            %th N/A
         - @search_books.each do |book|
           %tr
             %td
@@ -32,7 +39,7 @@
                 = image_tag book.image_url(:small), class: "index-img-section"
             %td= link_to book.title, book
             %td= book.author
-
+            %td= book.status ? image_tag('no50x50em.png') : image_tag('yes50x50em.png')
 
 
 - if user_signed_in? && current_user.admin?
@@ -62,4 +69,4 @@
               %td= book.author
               %td= book.status ? image_tag('no50x50em.png') : image_tag('yes50x50em.png')
               
-              / = paginate @books
+      = paginate @books
