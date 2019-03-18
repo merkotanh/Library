@@ -1,21 +1,16 @@
-.row
-  - if @ratings.exists?
-    .col-3
-      = 'id'
-    .col-1
-      = 'rate'
-    .col-3
-      = 'email'
-    .col-3
-      = 'title'
-.row
-  - if @ratings.exists?
-    - @ratings.each do |rating|
-      .col-3
-        = rating.id
-      .col-1
-        = rating.rate
-      .col-3
-        = rating.user.email
-      .col-3
-        = rating.book.title
+- if @ratings.exists?
+  %table
+    %thead
+      %tr
+        %th Book
+        %th Rate
+        %th User
+        %th email
+
+    %tbody
+      - @ratings.each do |rating|
+        %tr
+          %td= link_to rating.book.title, book_path(rating.book)
+          %td= rating.rate
+          %td= rating.user.nickname
+          %td= link_to rating.user.email, user_path(rating.user)

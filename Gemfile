@@ -48,5 +48,9 @@ group :test do
   gem 'mongoid-rspec'
 end
 
+group :production do
+  gem 'rails_12factor' # helps with Heroku log system
+  gem 'puma' # Production HTTP server
+end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

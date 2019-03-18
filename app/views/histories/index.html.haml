@@ -1,29 +1,18 @@
-.row
-  - if @history.exists?
-    .col-3
-      = 'id'
-    .col-3
-      = 'taken'
-    .col-1
-      = 'returned'
-    .col-1
-      = 'status'
-    .col-2
-      = 'email'
-    .col-2
-      = 'book_id'
-.row
-  - if @history.exists?
-    - @history.each do |history|
-      .col-3
-        = history.id
-      .col-3
-        = history.taken
-      .col-1
-        = history.returned
-      .col-1
-        = history.book.status
-      .col-2
-        = history.user.email
-      .col-2
-        = history.book.id
+- if @history.exists?
+  %table
+    %thead
+      %tr
+        %th Book
+        %th Taken
+        %th Returned
+        %th User
+        %th email
+
+    %tbody
+      - @history.each do |history|
+        %tr
+          %td= link_to history.book.title, book_path(history.book)
+          %td= history.taken
+          %td= history.returned
+          %td= history.user.nickname
+          %td= link_to history.user.email, user_path(history.user)
