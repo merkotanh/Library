@@ -8,7 +8,7 @@
 /   .col
 /     .slider
 /       - @top_books.each_with_index do |book, i|
-/         %div{:class=>"slide", :id=>"slide#{i}"}
+/         %div{:class=>"slide", :id=>"slide\#{i}"}
 /           = link_to book_path(book) do
 /             = image_tag book.image_url(:small), class: "index-img-section"
 /             .index-book-desc
