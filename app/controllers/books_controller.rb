@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  # before_action :authenticate_user!, except: [:index]
   before_action :set_book, only: [:show, :edit, :update, :destroy, :takebook, :toggle_enable_status, :vote]
   respond_to :js, :json, :html
   

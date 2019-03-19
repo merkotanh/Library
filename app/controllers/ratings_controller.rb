@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :find_book, only: [:create]
   respond_to :js, :json, :html
 
