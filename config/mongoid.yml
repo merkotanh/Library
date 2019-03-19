@@ -166,7 +166,7 @@ test:
 production:
     clients:
         default:
-            uri: <%= ENV['MONGODB_URI'] %>
+            uri: mongodb+srv://new-user-01:Galina26_08Merkotan@clusterlibrary-dau18.mongodb.net/test?retryWrites=true
         options:
             skip_version_check: true
         safe: true
