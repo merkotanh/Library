@@ -3,7 +3,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   if Rails.env.production?
-    fog_provider = 'fog/aws'
+    storage :fog
   else
     storage :file
   end
