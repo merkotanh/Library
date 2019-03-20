@@ -164,10 +164,9 @@ test:
         max_pool_size: 1
 
 production:
-    clients:
-        default:
-            # uri: mongodb+srv://new-user-01:Galina26_08Merkotan@clusterlibrary-dau18.mongodb.net/test?retryWrites=true
-            uri: mongodb://heroku_7j052ltf:Galina26_08Merkotan@ds117806.mlab.com:17806/heroku_7j052ltf
-        options:
-            skip_version_check: true
+  default:
+    # uri: mongodb+srv://new-user-01:Galina26_08Merkotan@clusterlibrary-dau18.mongodb.net/test?retryWrites=true
+    uri: mongodb://heroku_7j052ltf:Galina26_08Merkotan@ds117806.mlab.com:17806/heroku_7j052ltf
+  options:
+    skip_version_check: true
    
