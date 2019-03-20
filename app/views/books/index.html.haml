@@ -4,37 +4,36 @@
     %h1 Books
     %h4 Top rated books
 
-/ .row
-/   .col
-/     .slider
-/       - @top_books.each_with_index do |book, i|
-/         %div{:class=>"slide", :id=>"slide\#{i}"}
-/           = link_to book_path(book) do
-/             = image_tag book.image_url(:small), class: "index-img-section"
-/             .index-book-desc
-/               .index-b-description
-/                 = book.description
+.row
+  .col
+    .slider
+      - @top_books.each_with_index do |book, i|
+        %div{:class=>"slide", :id=>"slide\#{i}"}
+          = link_to book_path(book) do
+            = image_tag book.image_url(:small), class: "index-img-section"
+            .index-book-desc
+              .index-b-description
+                = book.description
 %hr
 
-/ .row
-/   .col
-/     = form_tag books_path, method: 'get' do
-/       = text_field_tag :search, params[:search], class:'form-control'
-/       = submit_tag 'Search', title: nil, class:'btn btn-light'
-/       = link_to 'Cancel', books_path, class:'btn btn-light'
+.row
+  .col
+    = form_tag books_path, method: 'get' do
+      = text_field_tag :search, params[:search], class:'form-control'
+      = submit_tag 'Search', title: nil, class:'btn btn-light'
+      = link_to 'Cancel', books_path, class:'btn btn-light'
 
-/     - if @search_books != nil
-/       %h1 Search results
-/       = render partial: 'book_table', locals: { books: @search_books }
-
-/ # - if user_signed_in? && current_user.admin?
+    - if @search_books != nil
+      %h1 Search results
+      = render partial: 'book_table', locals: { books: @search_books }
+      / - if user_signed_in? && current_user.admin?
 .row
   .col
     = link_to 'New Book', new_book_path
 
-/ .row
-/   .col
-/     %h4 All books
-/     #all_books
-/       = render partial: 'book_table', locals: { books: @books }
-/       = paginate @books
+.row
+  .col
+    %h4 All books
+    #all_books
+      = render partial: 'book_table', locals: { books: @books }
+      = paginate @books
