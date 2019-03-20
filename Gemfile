@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'kaminari'
 gem 'kaminari-mongoid'
+gem 'figaro'
 gem 'fog-aws'
 
 group :development, :test do
