@@ -12,6 +12,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 require 'rails/mongoid'
+Mongoid.load!(Rails.root.join("config", "mongoid.yml"))
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
