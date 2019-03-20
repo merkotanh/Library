@@ -1,7 +1,7 @@
 class User
   include Mongoid::Document
 
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :validatable
 
   ## Database authenticatable
