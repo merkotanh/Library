@@ -19,7 +19,8 @@ require 'rails/mongoid'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Mongoid.load!(Rails.root.join("config", "mongoid.yml"))
+Mongoid.load!("config/mongoid.yml")
+
 module Library
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
