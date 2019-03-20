@@ -1,4 +1,4 @@
 production:
   clients:
     default:
-      uri: mongodb://heroku_7j052ltf:Galina26_08Merkotan@ds117806.mlab.com:17806/heroku_7j052ltf
+      uri: mongodb://mongoid:dbmongo123456@ds117806.mlab.com:17806/heroku_7j052ltf
