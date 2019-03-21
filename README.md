@@ -16,7 +16,7 @@ ruby 2.3+, rails 5+, mongodb, github
  - Touchable slider for mobiles.<br />
  <h5>Admin may:</h5>
   - Add new book.<br />
-  - Edit, delete the book.<br />
+  - Edit, delete the book.<br /><br /><br />
 
 you may visit it by clicking the link below<br />
 https://fathomless-reef-46947.herokuapp.com/ 
