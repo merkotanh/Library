@@ -1,6 +1,7 @@
 S3_ACCESS_KEY:         AKIAJV6W4IGOAJWQZ7LQ
 S3_BUCKET:             mygallerya
 S3_SECRET_KEY:         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
+MONGOID_LINK:          mongodb://mongoid:dbmongo123456@ds117806.mlab.com:17806/heroku_7j052ltf
 
 EMAIL_LOGIN: 'newactionmailer@gmail.com'
 EMAIL_PASSWORD: 'new_action_mailer'

@@ -166,4 +166,4 @@ test:
 production:
   clients:
     default:
-      uri: mongodb://mongoid:dbmongo123456@ds117806.mlab.com:17806/heroku_7j052ltf
+      uri: ENV['MONGOID_LINK']
