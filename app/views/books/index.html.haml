@@ -14,7 +14,7 @@
             .index-book-desc
               .index-b-description
                 = book.description
-    %hr
+%hr
 
 .row
   .col
@@ -26,7 +26,6 @@
     - if @search_books != nil
       %h1 Search results
       = render partial: 'book_table', locals: { books: @search_books }
-
 - if user_signed_in? && current_user.admin?
   .row
     .col

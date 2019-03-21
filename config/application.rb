@@ -11,11 +11,15 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
+require 'rails/mongoid'
+
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+Mongoid.load!("config/mongoid.yml")
 
 module Library
   class Application < Rails::Application
@@ -29,5 +33,8 @@ module Library
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.generators do |g|
+      g.orm :mongoid
+    end
   end
 end

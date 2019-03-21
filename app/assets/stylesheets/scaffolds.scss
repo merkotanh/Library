@@ -160,6 +160,8 @@ table {
   }
   .slide:hover .index-book-desc {
     opacity: 1;
+    height: 100%;
+    overflow:hidden;
   }
 }
 

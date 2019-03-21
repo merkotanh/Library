@@ -23,7 +23,7 @@
             %td
               = link_to book_path(history.book) do
                 = image_tag history.book.image_url(:small), class: "index-img-section"
-            %td= link_to history.book.title, book_path
+            %td= link_to history.book.title, book_path(history.book)
             %td= history.book.author
             %td= history.taken
 .row
@@ -43,7 +43,7 @@
             %td
               = link_to book_path(history.book) do
                 = image_tag history.book.image_url(:small), class: "index-img-section"
-            %td= link_to history.book.title, book_path
+            %td= link_to history.book.title, book_path(history.book)
             %td= history.book.author
             %td= history.taken
             %td= history.returned

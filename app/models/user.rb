@@ -1,7 +1,7 @@
 class User
   include Mongoid::Document
 
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :validatable
 
   ## Database authenticatable
@@ -19,8 +19,8 @@ class User
   field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   field :admin, type: Mongoid::Boolean, default: false
-  field :nickname
-  field :phone
+  field :nickname, type: String
+  field :phone, type:String
 
   has_many :comments, dependent: :destroy
   has_many :histories
