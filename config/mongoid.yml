@@ -166,4 +166,4 @@ test:
 production:
   clients:
     default:
-      uri: ENV['MONGOID_LINK']
+      uri: <%= ENV['MONGOID_LINK'] %>
