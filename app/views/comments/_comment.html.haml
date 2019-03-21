@@ -1,6 +1,6 @@
 .comment{ id: "comment_#{comment.id}"}
   .commenter
-    = link_to comment.user.nickname, user_path(comment.user.id)
+    = link_to comment.user.email, user_path(comment.user.id)
   .comment-content
     = comment.content
 - if permitted_to_delete_comment?(comment)
