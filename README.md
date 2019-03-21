@@ -1,6 +1,6 @@
 <h3>Library</h3>
 
-ruby 2.3+, rails 5+, postgresql, github
+ruby 2.3+, rails 5+, mongodb, github
 
 <h4>Functionality</h4>
  The application provides an interface for library.
