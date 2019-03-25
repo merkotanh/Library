@@ -6,8 +6,7 @@ class BooksController < ApplicationController
   def index
     @top_books = Book.order(taken_count: :desc, stars_count: :desc).limit(5)
     if params[:search] && params[:search] != ''
-      # @search_books = Book.search(params[:search])
-      @search_books = Book.where(title: Regexp.new(params[:search]))
+      @search_books = Book.where(title: Regexp.new(params[:search], true))
     end
     @books = Book.order(title: :asc).page(params[:page]).per(5)
   end
