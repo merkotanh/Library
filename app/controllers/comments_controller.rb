@@ -14,12 +14,11 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @book }
-        format.js {}
       else
         format.html { render 'books/show', notice: 'Comment was not created.' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.js {}
       end
+      format.js {}
     end
   end
 
@@ -28,21 +27,22 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    if permitted_to_delete_comment?(@comment) && @comment.destroy
-      respond_to do |format|
-        format.html { redirect_to book_path(@book) }
-        format.js {}
-      end
+    return unless permitted_to_delete_comment?(@comment) && @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to book_path(@book) }
+      format.js {}
+    end
     end
   end
 
   private
 
-    def comment_params
-      params.require(:comment).permit(:content, :user_id, :book_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:content, :user_id, :book_id)
+  end
 
-    def find_book
-      @book = Book.find(params[:book_id])
-    end
+  def find_book
+    @book = Book.find(params[:book_id])
+  end
+
 end

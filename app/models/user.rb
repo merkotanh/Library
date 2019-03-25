@@ -5,8 +5,8 @@ class User
          :recoverable, :rememberable, :validatable
 
   ## Database authenticatable
-  field :email,              type: String, default: ""
-  field :encrypted_password, type: String, default: ""
+  field :email,              type: String, default: ''
+  field :encrypted_password, type: String, default: ''
   ## Recoverable
   field :reset_password_token,   type: String
   field :reset_password_sent_at, type: Time
@@ -20,14 +20,14 @@ class User
 
   field :admin, type: Mongoid::Boolean, default: false
   field :nickname, type: String
-  field :phone, type:String
+  field :phone, type: String
 
   has_many :comments, dependent: :destroy
   has_many :histories
   has_many :ratings
 
   def admin?
-    self.admin == true ? true : false
+    self.admin
   end
 
   def books_in_use

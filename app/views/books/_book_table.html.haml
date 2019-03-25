@@ -11,7 +11,7 @@
       %tr
         %td
           = link_to book_path(book) do
-            = image_tag book.image_url(:small), class: "index-img-section"
+            = image_tag book.image_url(:small), class: 'index-img-section'
         %td= link_to book.title, book
         %td= book.author
         %td= book.status ? image_tag('no50x50em.png') : image_tag('yes50x50em.png')

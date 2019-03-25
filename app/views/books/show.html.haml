@@ -6,9 +6,9 @@
       = @book.author
 .row
   .col-6
-    = render "ratings/setrating"
+    = render 'ratings/setrating'
     %div{style: 'display:none;', id: 'rating_alert'}
-      = "u v been voted already"
+      = 'u v been voted already'
   .col-6
     #takebook-section
       - if @book.taken_by?(current_user.id) == 0
@@ -19,12 +19,12 @@
           = link_to "by #{@book.taken_by.nickname}", user_path(@book.taken_by.id)
       - else
         / book's free
-        = link_to "#{@book.taken_by?(current_user.id) == -1 ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book),  id: "bookid", method: :put, remote: true, class: "btn btn-xs btn-#{@book.taken_by?(current_user.id) == -1 ? 'warning' : 'success'}"
+        = link_to "#{@book.taken_by?(current_user.id) == -1 ? 'Return' : 'Take' }", toggle_enable_status_book_path(@book),  id: 'bookid', method: :put, remote: true, class: "btn btn-xs btn-#{@book.taken_by?(current_user.id) == -1 ? 'warning' : 'success'}"
 
 .row
   .col-5
     #book-img-section
-      = image_tag @book.image_url(:small), class: "book-img-section"
+      = image_tag @book.image_url(:small), class: 'book-img-section'
   .col-7
     .special-text
       = @book.description
@@ -48,8 +48,8 @@
         read more
 
     = form_for [ @book, @book.comments.build ], remote: true  do |form|
-      = form.text_area :content, class: "form-control"
-      = form.submit class: "btn btn-light"
+      = form.text_area :content, class: 'form-control'
+      = form.submit class: 'btn btn-light'
 
     #history-section
       - if @book.histories.all.size > 0

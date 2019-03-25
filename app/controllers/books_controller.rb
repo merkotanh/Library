@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :takebook, :toggle_enable_status, :vote]
+  before_action :set_book, only: %i(show edit update destroy takebook toggle_enable_status vote)
   respond_to :js, :json, :html
   
   def index
@@ -60,7 +60,7 @@ class BooksController < ApplicationController
     else
       take_book!(@book)
     end
-    @history = @book.histories.last#@book.histories.where(user_id: '5c5ad8272b10301f8a757ee5')
+    @history = @book.histories.last
   end
 
   def vote
@@ -68,12 +68,13 @@ class BooksController < ApplicationController
   end
 
   private
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    def book_params
-      params.require(:book).permit(:title, :author, :description, :image, :status, :votes)
-    end
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  def book_params
+    params.require(:book).permit(:title, :author, :description, :image, :status, :votes)
+  end
 
 end
