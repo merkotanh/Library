@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_book, only: [:create, :destroy]
+  respond_to :js, :json, :html
 
   def show
   end
@@ -27,11 +28,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    return unless permitted_to_delete_comment?(@comment) && @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to book_path(@book) }
-      format.js {}
-    end
+    if permitted_to_delete_comment?(@comment) && @comment.destroy
+      respond_to do |format|
+        format.html { redirect_to book_path(@book) }
+        format.js {}
+      end
     end
   end
 

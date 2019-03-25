@@ -39,9 +39,9 @@
         %ul.navbar-nav.mr-auto
           %li.nav-item
             %a.nav-link{href: books_path} Books
-          %li.nav-item
-            %a.nav-link{href: new_book_path} New book
           - if user_signed_in? && current_user.admin?
+            %li.nav-item
+              %a.nav-link{href: new_book_path} New book
             %li.nav-item
               %a.nav-link{href: histories_path} History
             %li.nav-item

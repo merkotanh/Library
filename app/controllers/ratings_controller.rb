@@ -19,7 +19,7 @@ class RatingsController < ApplicationController
     end
     respond_to do |format|
       if @rating.save
-        @book.count_book_rating(@rating.rate)
+        @book.count_book_rating
         format.html { redirect_back(fallback_location: root_path) }
         format.json { render json: @rating, status: :created }
       else
