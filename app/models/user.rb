@@ -31,7 +31,7 @@ class User
   end
 
   def books_in_use
-    self.histories.where(returned: nil)
+    self.histories.where(:taken.exists => true).and.where(returned: nil)
   end
 
   def books_been_read

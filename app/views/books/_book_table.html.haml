@@ -2,8 +2,8 @@
   %thead
     %tr
       %th Cover
-      %th Title
-      %th Author
+      %th.tdnvis Title
+      %th.tdnvis Author
       %th N/A
 
   %tbody
@@ -12,6 +12,6 @@
         %td
           = link_to book_path(book) do
             = image_tag book.image_url(:small), class: 'index-img-section'
-        %td= link_to book.title, book
-        %td= book.author
+        %td.tdnvis= link_to book.title, book
+        %td.tdnvis= book.author
         %td= book.status ? image_tag('no50x50em.png') : image_tag('yes50x50em.png')

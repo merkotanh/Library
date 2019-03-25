@@ -119,6 +119,22 @@ table {
     text-align: center;
     text-transform: capitalize;
   }
+}
+
+@media screen and (max-width: 370px) {
+  table {
+    width: 100%;
+    margin: auto;
+  }
+  th, td {
+    padding: 5px 10px 5px 10px;
+    clear: both;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .tdnvis {
+    display:none;
+  }
 
 }
 

@@ -14,8 +14,8 @@
       %thead
         %tr
           %th Cover
-          %th Title
-          %th Author
+          %th.tdnvis Title
+          %th.tdnvis Author
           %th Taken
       %tbody
         - @user.books_in_use.each do |history|
@@ -23,8 +23,8 @@
             %td
               = link_to book_path(history.book) do
                 = image_tag history.book.image_url(:small), class: "index-img-section"
-            %td= link_to history.book.title, book_path(history.book)
-            %td= history.book.author
+            %td.tdnvis= link_to history.book.title, book_path(history.book)
+            %td.tdnvis= history.book.author
             %td= history.taken
 .row
   .col
@@ -33,8 +33,8 @@
       %thead
         %tr
           %th Cover
-          %th Title
-          %th Author
+          %th.tdnvis Title
+          %th.tdnvis Author
           %th Taken
           %th Returned
       %tbody
@@ -43,7 +43,7 @@
             %td
               = link_to book_path(history.book) do
                 = image_tag history.book.image_url(:small), class: "index-img-section"
-            %td= link_to history.book.title, book_path(history.book)
-            %td= history.book.author
+            %td.tdnvis= link_to history.book.title, book_path(history.book)
+            %td.tdnvis= history.book.author
             %td= history.taken
             %td= history.returned
