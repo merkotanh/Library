@@ -23,7 +23,7 @@ class User
   field :phone, type: String
 
   has_many :comments, dependent: :destroy
-  has_many :histories
+  has_many :histories, dependent: :destroy
   has_many :ratings
 
   def admin?

@@ -5,7 +5,7 @@ class Book
   field :title, type: String
   field :author, type: String
   field :description, type: String
-  field :image, type: String
+  # field :image, type: String
   field :status, type: Mongoid::Boolean, default: false
   field :rank, type: String
   field :votes, type: Integer, default: 0
@@ -16,7 +16,7 @@ class Book
   index ({ author: 1 })
 
   has_many :comments, dependent: :destroy
-  has_many :histories
+  has_many :histories, dependent: :destroy
   has_many :ratings, dependent: :destroy
 
   def count_book_rating
@@ -44,7 +44,4 @@ class Book
     self.status ? self.histories.where(user_id: user_id).and.where(returned: nil).exists? ? -1 : 0 : 1
   end
 
-  def self.search(search)
-    # where({title: search})
-  end
 end
