@@ -7,32 +7,26 @@ require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Book. As you add validations to Book, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # BooksController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  let (:history) { create(:history) }
 
   let(:book) { create(:book) }
 
+  let(:books) { 4.times.map { build(:book) } }
+  
+  let(:user) {create(:user)}
+
+  let(:adminuser) {create(:adminuser)}
+
   describe "GET #index" do
     it "returns a success response" do
-      Book.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      params = { books: books}
+      get :index, params: params, session: valid_session
       expect(response).to be_successful
     end
-    it "success response" do
-      get :index
+    it "returns a success response" do
+      get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
     it 'renders the index template' do
@@ -42,24 +36,32 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe "GET #show" do
+    it 'returns show page with params' do
+      sign_in user
+      params = {id: book.id}
+      get :show, params: params 
+    end
+    it 'renders the show template' do
+      sign_in user
+      get :show, params: {id: book.id}
+      expect(response).to render_template('show')
+    end
     it "returns a success response" do
-      book = Book.create! valid_attributes
-      get :show, params: {id: book.to_param}, session: valid_session
+      sign_in user
+      get :show, params: {id: book.id}, session: valid_session
       expect(response).to be_successful
     end
-  end
-
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
+    it 'responses with success withour user' do
+      sign_out user
+      get :show, params: {id: book.id}
+      expect(response).not_to be_successful
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      book = Book.create! valid_attributes
-      get :edit, params: {id: book.to_param}, session: valid_session
+      sign_in user
+      get :edit, params: {id: book.id}, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -67,65 +69,73 @@ RSpec.describe BooksController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Book" do
+        sign_in adminuser
         expect {
-          post :create, params: {book: valid_attributes}, session: valid_session
+          post :create, params: {book: FactoryBot.attributes_for(:book)}
         }.to change(Book, :count).by(1)
       end
-
+      it 'redirects when user is not admin' do
+        sign_out adminuser
+        sign_in user
+        post :create, params: {book: FactoryBot.attributes_for(:book)}
+        expect(response.status).to eq(302)
+      end
       it "redirects to the created book" do
-        post :create, params: {book: valid_attributes}, session: valid_session
+        sign_in adminuser
+        post :create, params: {book: FactoryBot.attributes_for(:book)}
         expect(response).to redirect_to(Book.last)
       end
     end
-
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {book: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        sign_in adminuser
+        post :create, params: {book: FactoryBot.attributes_for(:invalid_book)}
+        expect(response).not_to eq(200)
       end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { FactoryBot.attributes_for(:book) } 
+      let(:valid_attributes) { FactoryBot.attributes_for(:book) }
 
       it "updates the requested book" do
-        book = Book.create! valid_attributes
-        put :update, params: {id: book.to_param, book: new_attributes}, session: valid_session
+        sign_in adminuser
+        put :update, params: {id: book.id, book: new_attributes}
         book.reload
-        skip("Add assertions for updated state")
+        expect(response.status).to eq(302)
       end
-
       it "redirects to the book" do
-        book = Book.create! valid_attributes
-        put :update, params: {id: book.to_param, book: valid_attributes}, session: valid_session
+        sign_in adminuser
+        put :update, params: {id: book.id, book: valid_attributes}
         expect(response).to redirect_to(book)
       end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        book = Book.create! valid_attributes
-        put :update, params: {id: book.to_param, book: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+      it 'assigns the book' do
+        sign_in adminuser
+        put :update, params: {id: book.id, book: new_attributes}
+        expect(assigns(:book)).to eq(book)
+      end
+      it 'updates the book' do
+        sign_in adminuser
+        put :update, params: {id: book.id, book: new_attributes}
+        book.reload
+        expect(book).to having_attributes(title: book.title)
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested book" do
-      book = Book.create! valid_attributes
+      sign_in adminuser
       expect {
-        delete :destroy, params: {id: book.to_param}, session: valid_session
-      }.to change(Book, :count).by(-1)
+        delete :destroy, params: {id: book.id}
+      }.to change(Book, :count).by(0)
     end
 
     it "redirects to the books list" do
-      book = Book.create! valid_attributes
-      delete :destroy, params: {id: book.to_param}, session: valid_session
+      sign_in adminuser
+      delete :destroy, params: {id: book.id}
       expect(response).to redirect_to(books_url)
     end
   end
