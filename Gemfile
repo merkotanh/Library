@@ -49,6 +49,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'mongoid-rspec'
+  gem 'rails-controller-testing'
 end
 
 group :production do
