@@ -19,6 +19,9 @@ class Book
   has_many :histories, dependent: :destroy
   has_many :ratings, dependent: :destroy
 
+  validates :title, presence: true
+  validates :author, presence: true
+
   def count_book_rating
     self.rank = (self.stars_count/self.ratings.map{ |r| 1/r.rate.to_f }.inject(0){ |rating, r| rating + r }).round.to_s
     self.save
