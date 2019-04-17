@@ -33,6 +33,11 @@ RSpec.describe BooksController, type: :controller do
       get :index
       expect(response).to render_template('index')
     end
+    it 'assigns variable books' do
+      book = Book.create(title: 'Title', author: 'Author')
+      get :index
+      expect(assigns(:books)).to eq([book])
+    end
   end
 
   describe "GET #show" do
